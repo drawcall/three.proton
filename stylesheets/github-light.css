@@ -122,3 +122,32 @@ SOFTWARE.
   color: #1d3e81;
 }
 
+li {list-style-type:none;}
+ul{margin-top: 5px;}
+.m-title{color:#888;}
+
+.show-case{position:relative;}
+.show-case a{display:block; overflow:hidden; position: relative; width:120px;height: 120px;border-radius: 100%;}
+.show-case img{width:100%;height: 100%;}
+.show-case > div{overflow: hidden;position:relative;float: left;margin-left: 30px;margin-bottom: 20px;}
+.show-case .inner-div{position: relative;}
+.show-case .info{text-align: center;}
+.show-case .mask{
+  background-color: rgba(27,114,210,0.65);
+  width: 110%;
+  height: 110%;
+  
+  position: absolute;
+  z-index: 999;
+  top: -5%;
+  left: -5%;
+}
+
+
+.trans {
+  transition: all .4s;
+  -moz-transition: all .4s;
+  -webkit-transition: all .4s;
+  -ms-transition: all .4s;
+  -o-transition: all .4s;
+}
