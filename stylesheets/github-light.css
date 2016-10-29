@@ -151,3 +151,7 @@ ul{margin-top: 5px;}
   -ms-transition: all .4s;
   -o-transition: all .4s;
 }
+
+html,body{
+  font-family: "STXihei", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
