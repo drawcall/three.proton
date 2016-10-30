@@ -45,8 +45,6 @@
         scene = new THREE.Scene();
         scene.fog = new THREE.Fog(0xffffff, 1, 10000);
 
-        clock = new THREE.Clock();
-
         renderer = new THREE.WebGLRenderer();
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -149,7 +147,7 @@
 
     var tha = 0;
     function render() {
-        proton.update(clock.getDelta());
+        proton.update();
         renderer.render(scene, camera);
 
         tha += .005;

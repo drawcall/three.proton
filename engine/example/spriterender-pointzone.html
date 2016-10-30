@@ -47,8 +47,6 @@
         scene = new THREE.Scene();
         scene.fog = new THREE.Fog(0xffffff, 1, 10000);
 
-        clock = new THREE.Clock();
-
         renderer = new THREE.WebGLRenderer();
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -157,11 +155,8 @@
     var r = 500;
 
     function render() {
-        var delta = clock.getDelta();
-
         setColor();
-
-        delta < 5 / 60 && proton.update(delta);
+        proton.update();
         tha += Math.PI / 150;
         var p = 300 * Math.sin(2 * tha)
         emitter.p.x = p * Math.cos(tha);
