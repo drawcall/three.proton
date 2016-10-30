@@ -143,6 +143,9 @@ ul{margin-top: 5px;}
   left: -5%;
 }
 
+@media only screen and (max-width: 321px) { 
+    .show-case a{width:100px;height: 100px;}
+}
 
 .trans {
   transition: all .4s;
