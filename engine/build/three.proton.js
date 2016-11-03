@@ -2710,78 +2710,90 @@
 
 
 
-	/**
-	 * The FollowEmitter class inherits from Proton.Emitter
-	 *
-	 * use the FollowEmitter will emit particle when mousemoving
-	 *
-	 * @class Proton.FollowEmitter
-	 * @constructor
-	 * @param {Element} mouseTarget mouseevent's target;
-	 * @param {Number} ease the easing of following speed;
-	 * @default 0.7
-	 * @param {Object} pObj the parameters object;
-	 */
-	function FollowEmitter(mouseTarget, ease, pObj) {
-		this.mouseTarget = Proton.Util.initValue(mouseTarget, window);
-		this.ease = Proton.Util.initValue(ease, .7);
-		this._allowEmitting = false;
-		this.initEventHandler();
-		FollowEmitter._super_.call(this, pObj);
-	};
+    /**
+     * The FollowEmitter class inherits from Proton.Emitter
+     *
+     * use the FollowEmitter will emit particle when mousemoving
+     *
+     * @class Proton.FollowEmitter
+     * @constructor
+     * @param {Element} mouseTarget mouseevent's target;
+     * @param {Number} ease the easing of following speed;
+     * @default 0.7
+     * @param {Object} pObj the parameters object;
+     */
+    function FollowEmitter(mouseTarget, ease, pObj) {
+        this.mouseTarget = Proton.Util.initValue(mouseTarget, window);
+        this.ease = Proton.Util.initValue(ease, .7);
+        this._allowEmitting = false;
+        this.initEventHandler();
+        FollowEmitter._super_.call(this, pObj);
+    };
 
-	Proton.Util.inherits(FollowEmitter, Proton.Emitter);
-	FollowEmitter.prototype.initEventHandler = function() {
-		var self = this;
-		this.mousemoveHandler = function(e) {
-			self.mousemove.call(self, e);
-		};
+    Proton.Util.inherits(FollowEmitter, Proton.Emitter);
+    FollowEmitter.prototype.initEventHandler = function() {
+        var self = this;
+        this.mousemoveHandler = function(e) {
+            self.mousemove.call(self, e);
+        };
 
-		this.mousedownHandler = function(e) {
-			self.mousedown.call(self, e);
-		};
+        this.mousedownHandler = function(e) {
+            self.mousedown.call(self, e);
+        };
 
-		this.mouseupHandler = function(e) {
-			self.mouseup.call(self, e);
-		};
-		this.mouseTarget.addEventListener('mousemove', this.mousemoveHandler, false);
-	}
-	/**
-	 * start emit particle
-	 * @method emit
-	 */
-	FollowEmitter.prototype.emit = function() {
-		this._allowEmitting = true;
-	}
-	/**
-	 * stop emiting
-	 * @method stopEmit
-	 */
-	FollowEmitter.prototype.stopEmit = function() {
-		this._allowEmitting = false;
-	}
+        this.mouseupHandler = function(e) {
+            self.mouseup.call(self, e);
+        };
+        
+        this.mouseTarget.addEventListener('mousemove', this.mousemoveHandler, false);
+    }
 
-	FollowEmitter.prototype.mousemove = function(e) {
-		if (e.layerX || e.layerX == 0) {
-			this.p.x += (e.layerX - this.p.x) * this.ease;
-			this.p.y += (e.layerY - this.p.y) * this.ease;
-		} else if (e.offsetX || e.offsetX == 0) {
-			this.p.x += (e.offsetX - this.p.x) * this.ease;
-			this.p.y += (e.offsetY - this.p.y) * this.ease;
-		}
-		if (this._allowEmitting)
-			FollowEmitter._super_.prototype.emit.call(this, 'once');
-	};
-	/**
-	 * Destory this Emitter
-	 * @method destroy
-	 */
-	FollowEmitter.prototype.destroy = function() {
-		FollowEmitter._super_.prototype.destroy.call(this);
-		this.mouseTarget.removeEventListener('mousemove', this.mousemoveHandler, false);
-	}
+    /**
+     * start emit particle
+     * @method emit
+     */
+    FollowEmitter.prototype.emit = function() {
+        this._allowEmitting = true;
+    }
 
-	Proton.FollowEmitter = FollowEmitter;
+    /**
+     * stop emiting
+     * @method stopEmit
+     */
+    FollowEmitter.prototype.stopEmit = function() {
+        this._allowEmitting = false;
+    }
+
+    FollowEmitter.prototype.setCameraAndCanvas = function(camera, canvas) {
+        this.camera = camera;
+        this.canvas = canvas;
+    }
+
+    FollowEmitter.prototype.mousemove = function(e) {
+        if (e.layerX || e.layerX == 0) {
+            this.p.x += (e.layerX - this.p.x) * this.ease;
+            this.p.y += (e.layerY - this.p.y) * this.ease;
+        } else if (e.offsetX || e.offsetX == 0) {
+            this.p.x += (e.offsetX - this.p.x) * this.ease;
+            this.p.y += (e.offsetY - this.p.y) * this.ease;
+        }
+
+        this.p.copy(Proton.THREEUtil.toSpacePos(this.p, this.camera, this.canvas));
+
+        if (this._allowEmitting)
+            FollowEmitter._super_.prototype.emit.call(this, 'once');
+    };
+
+    /**
+     * Destory this Emitter
+     * @method destroy
+     */
+    FollowEmitter.prototype.destroy = function() {
+        FollowEmitter._super_.prototype.destroy.call(this);
+        this.mouseTarget.removeEventListener('mousemove', this.mousemoveHandler, false);
+    }
+
+    Proton.FollowEmitter = FollowEmitter;
 
 
 
@@ -3325,22 +3337,24 @@
      * @constructor
      */
 
-    function MeshZone(geometry) {
+    function MeshZone(geometry, scale) {
         MeshZone._super_.call(this);
         if (geometry instanceof THREE.Geometry) {
             this.geometry = geometry;
         } else {
             this.geometry = geometry.geometry;
         }
+
+        this.scale = scale || 1;
     }
 
     Proton.Util.inherits(MeshZone, Proton.Zone);
     MeshZone.prototype.getPosition = function() {
         var vertices = this.geometry.vertices;
         var rVector = vertices[(vertices.length * Math.random()) >> 0];
-        this.vector.x = rVector.x;
-        this.vector.y = rVector.y;
-        this.vector.z = rVector.z;
+        this.vector.x = rVector.x * this.scale;
+        this.vector.y = rVector.y * this.scale;
+        this.vector.z = rVector.z * this.scale;
         return this.vector;
     }
 
@@ -3421,7 +3435,7 @@
     function BoxZone(a, b, c, d, e, f) {
         var x, y, z, w, h, d;
         BoxZone._super_.call(this);
-        
+
         if (Proton.Util.isUndefined(b, c, d, e, f)) {
             x = y = z = 0;
             w = h = d = (a || 100);
@@ -3445,6 +3459,10 @@
         this.width = w;
         this.height = h;
         this.depth = d;
+
+        //
+        this.friction = 0.85;
+        this.max = 6;
     }
 
     Proton.Util.inherits(BoxZone, Proton.Zone);
@@ -3475,26 +3493,40 @@
     BoxZone.prototype._bound = function(particle) {
         if (particle.p.x - particle.radius < this.x - this.width / 2) {
             particle.p.x = this.x - this.width / 2 + particle.radius;
-            particle.v.x *= -1;
+            particle.v.x *= -this.friction;
+            this._static(particle, "x");
         } else if (particle.p.x + particle.radius > this.x + this.width / 2) {
             particle.p.x = this.x + this.width / 2 - particle.radius;
-            particle.v.x *= -1;
+            particle.v.x *= -this.friction;
+            this._static(particle, "x");
         }
 
         if (particle.p.y - particle.radius < this.y - this.height / 2) {
             particle.p.y = this.y - this.height / 2 + particle.radius;
-            particle.v.y *= -1;
+            particle.v.y *= -this.friction;
+            this._static(particle, "y");
         } else if (particle.p.y + particle.radius > this.y + this.height / 2) {
             particle.p.y = this.y + this.height / 2 - particle.radius;
-            particle.v.y *= -1;
+            particle.v.y *= -this.friction;
+            this._static(particle, "y");
         }
 
         if (particle.p.z - particle.radius < this.z - this.depth / 2) {
             particle.p.z = this.z - this.depth / 2 + particle.radius;
-            particle.v.z *= -1;
+            particle.v.z *= -this.friction;
+            this._static(particle, "z");
         } else if (particle.p.z + particle.radius > this.z + this.depth / 2) {
             particle.p.z = this.z + this.depth / 2 - particle.radius;
-            particle.v.z *= -1;
+            particle.v.z *= -this.friction;
+            this._static(particle, "z");
+        }
+    }
+
+    BoxZone.prototype._static = function(particle, axis) {
+        if (particle.v[axis] * particle.a[axis] > 0) return;
+        if (Math.abs(particle.v[axis]) < Math.abs(particle.a[axis]) * 0.0167 * this.max) {
+            particle.v[axis] = 0;
+            particle.a[axis] = 0;
         }
     }
 
