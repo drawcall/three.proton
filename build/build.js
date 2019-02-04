@@ -69,7 +69,7 @@ for (i = 0; i < numFiles; i++) {
 ///console.log(umd);
 // Save source to output file
 console.log("Saving source file...")
-fs.writeFileSync(output_full, source);
+fs.writeFileSync(output_full, source, 'utf8');
 console.log("Source file saved as: " + output_full);
 
 // Run UglifyJS to minify the source
@@ -81,5 +81,5 @@ ast = uglify.processor.ast_squeeze_more(ast);
 minified_source = uglify.processor.gen_code(ast);
 
 // Save minified source file
-fs.writeFileSync(output_min, head + minified_source);
+fs.writeFileSync(output_min, head + minified_source, 'utf8');
 console.log("Minified source file saved as: " + output_min);
