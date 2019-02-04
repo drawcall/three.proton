@@ -87,9 +87,7 @@
                 break;
 
             case "to":
-                particle.rotation.x = Proton.MathUtils.lerp(particle.transform.fR.x, particle.transform.tR.x, this.energy);
-                particle.rotation.y = Proton.MathUtils.lerp(particle.transform.fR.y, particle.transform.tR.y, this.energy);
-                particle.rotation.z = Proton.MathUtils.lerp(particle.transform.fR.z, particle.transform.tR.z, this.energy);
+                particle.rotation.set(Proton.MathUtils.lerp(particle.transform.fR.x, particle.transform.tR.x, this.energy), Proton.MathUtils.lerp(particle.transform.fR.y, particle.transform.tR.y, this.energy), Proton.MathUtils.lerp(particle.transform.fR.z, particle.transform.tR.z, this.energy))
                 break;
 
             case "add":

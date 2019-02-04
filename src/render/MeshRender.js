@@ -26,7 +26,7 @@
             
             //set material
             if (particle.useAlpha || particle.useColor) {
-                particle.target.material.__puid = Proton.PUID.id(particle.body.material);;
+                particle.target.material.__puid = Proton.PUID.id(particle.body.material);
                 particle.target.material = this._materialPool.get(particle.target.material);
             }
         }

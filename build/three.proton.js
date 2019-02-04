@@ -1,8 +1,8 @@
 /*!
- * three.proton v0.1.3
+ * three.proton v0.1.6
  * https://github.com/a-jie/three.proton
  *
- * Copyright 2011-2017, A-JIE
+ * Copyright 2011-2019, A-JIE, Kingles
  * Licensed under the MIT license
  * http://www.opensource.org/licenses/mit-license
  *
@@ -2297,9 +2297,7 @@
                 break;
 
             case "to":
-                particle.rotation.x = Proton.MathUtils.lerp(particle.transform.fR.x, particle.transform.tR.x, this.energy);
-                particle.rotation.y = Proton.MathUtils.lerp(particle.transform.fR.y, particle.transform.tR.y, this.energy);
-                particle.rotation.z = Proton.MathUtils.lerp(particle.transform.fR.z, particle.transform.tR.z, this.energy);
+                particle.rotation.set(Proton.MathUtils.lerp(particle.transform.fR.x, particle.transform.tR.x, this.energy), Proton.MathUtils.lerp(particle.transform.fR.y, particle.transform.tR.y, this.energy), Proton.MathUtils.lerp(particle.transform.fR.z, particle.transform.tR.z, this.energy))
                 break;
 
             case "add":
@@ -3016,7 +3014,7 @@
             
             //set material
             if (particle.useAlpha || particle.useColor) {
-                particle.target.material.__puid = Proton.PUID.id(particle.body.material);;
+                particle.target.material.__puid = Proton.PUID.id(particle.body.material);
                 particle.target.material = this._materialPool.get(particle.target.material);
             }
         }
@@ -3117,6 +3115,27 @@
 
     SpriteRender.prototype.scale = function(particle) {
         particle.target.scale.set(particle.scale * particle.radius, particle.scale * particle.radius, 1);
+    };
+
+    SpriteRender.prototype.onParticleUpdate = function(particle) {
+        if (particle.target) {
+            particle.target.position.copy(particle.p);
+            if(particle.target.material.rotation !== undefined) {
+                particle.target.material.rotation = particle.rotation.x;
+            }
+            
+
+            this.scale(particle);
+
+            if (particle.useAlpha) {
+                particle.target.material.opacity = particle.alpha;
+                particle.target.material.transparent = true;
+            }
+
+            if (particle.useColor) {
+                particle.target.material.color.copy(particle.color);
+            }
+        }
     };
 
     Proton.SpriteRender = SpriteRender;

@@ -1,8 +1,8 @@
 {
   "name": "three.proton.js",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "three.proton is a magical 3d particle engine using [three.js]",
-  "main": "./build/three.proton.min.js",
+  "main": "./build/three.proton.js",
   "directories": {
     "example": "example",
     "lib": "lib"
