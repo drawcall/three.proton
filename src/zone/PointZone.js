@@ -24,8 +24,8 @@
         }
 
         this.x = x;
-        this.y = x;
-        this.z = x;
+        this.y = y;
+        this.z = z;
     }
 
     Proton.Util.inherits(PointZone, Proton.Zone);
