@@ -1,8 +1,8 @@
 /*!
- * three.proton v0.1.3
+ * three.proton v0.1.5
  * https://github.com/a-jie/three.proton
  *
- * Copyright 2011-2017, A-JIE
+ * Copyright 2011-2019, A-JIE
  * Licensed under the MIT license
  * http://www.opensource.org/licenses/mit-license
  *
@@ -3279,12 +3279,12 @@
         this.y = x;
         this.z = x;
         this.radius = r;
-        this.the = this.phi = 0;
+        this.tha = this.phi = 0;
     }
 
     Proton.Util.inherits(SphereZone, Proton.Zone);
     SphereZone.prototype.getPosition = function() {
-        var the, phi, r;
+        var tha, phi, r;
         return function() {
             this.random = Math.random();
 
@@ -3403,8 +3403,8 @@
         }
 
         this.x = x;
-        this.y = x;
-        this.z = x;
+        this.y = y;
+        this.z = z;
     }
 
     Proton.Util.inherits(PointZone, Proton.Zone);

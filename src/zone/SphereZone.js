@@ -28,12 +28,12 @@
         this.y = x;
         this.z = x;
         this.radius = r;
-        this.the = this.phi = 0;
+        this.tha = this.phi = 0;
     }
 
     Proton.Util.inherits(SphereZone, Proton.Zone);
     SphereZone.prototype.getPosition = function() {
-        var the, phi, r;
+        var tha, phi, r;
         return function() {
             this.random = Math.random();
 

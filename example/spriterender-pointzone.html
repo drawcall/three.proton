@@ -108,7 +108,7 @@
         //setRate
         emitter.rate = new Proton.Rate(new Proton.Span(4, 16), new Proton.Span(.01));
         //addInitialize
-        emitter.addInitialize(new Proton.Position(new Proton.PointZone(0, 0)));
+        emitter.addInitialize(new Proton.Position(new Proton.PointZone(0, 0, 0)));
         emitter.addInitialize(new Proton.Mass(1));
         emitter.addInitialize(new Proton.Radius(6, 12));
         emitter.addInitialize(new Proton.Life(3));
@@ -139,11 +139,10 @@
         return new THREE.Sprite(material);
     }
 
-    function setColor() {
+    function changeParticleColor() {
         hcolor += .01;
         color1.setHSL(hcolor - (hcolor >> 0), 1, .5);
         color2.setHSL(hcolor - (hcolor >> 0) + .3, 1, .5);
-        //colorBehaviour.reset(color1, color2);
     }
 
     function animate() {
@@ -153,25 +152,33 @@
         stats.end();
     }
 
-    var ctha = 0;
-    var r = 500;
-
     function render() {
+        changeParticleColor();
+        protonUpdate();
+        renderer.render(scene, camera);
+        camera.lookAt(scene.position);
+        moveEmitter();
+        rotateCamera(camera);
+        
+        Proton.Debug.renderInfo(proton, 3);
+    }
+
+    function protonUpdate(){
         var delta = clock.getDelta();
-
-        setColor();
-
         delta < 5 / 60 && proton.update(delta);
+    }
+
+    function moveEmitter(){
         tha += Math.PI / 150;
-        var p = 300 * Math.sin(2 * tha)
+        var p = 300 * Math.sin(2 * tha);
         emitter.p.x = p * Math.cos(tha);
         emitter.p.y = p * Math.sin(tha);
         emitter.p.z = p * Math.tan(tha) / 2;
+    }
 
-        renderer.render(scene, camera);
-        //controls.update();
-        camera.lookAt(scene.position);
-
+    var ctha = 0;
+    var r = 500;
+    function rotateCamera(camera){
         ctha += .016;
         r = 300;
         camera.position.x = Math.sin(ctha) * r;

@@ -65,13 +65,17 @@ for (i = 0; i < numFiles; i++) {
         source += "    return Proton;\n}));";
     }
 }
+
+function noop(){}
+
 ///console.log(umd);
 // Save source to output file
-fs.writeFile(output_full, source, "UTF-8");
+fs.writeFile(output_full, source, "UTF-8", noop);
 console.log("Source file saved as: " + output_full);
 
 // Run UglifyJS to minify the source
 console.log("Minifying source with UglifyJS...");
+
 ast = uglify.parser.parse(source);
 ast = uglify.processor.ast_mangle(ast);
 ast = uglify.processor.ast_squeeze(ast);
@@ -79,5 +83,5 @@ ast = uglify.processor.ast_squeeze_more(ast);
 minified_source = uglify.processor.gen_code(ast);
 
 // Save minified source file
-fs.writeFile(output_min, head + minified_source, "UTF-8");
+fs.writeFile(output_min, head + minified_source, "UTF-8", noop);
 console.log("Minified source file saved as: " + output_min);
