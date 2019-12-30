@@ -1,6 +1,6 @@
 /*!
- * three.proton v0.1.5
- * https://github.com/a-jie/three.proton
+ * three.proton v0.1.7
+ * https://github.com/drawcall/three.proton
  *
  * Copyright 2011-2019, A-JIE
  * Licensed under the MIT license

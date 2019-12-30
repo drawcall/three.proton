@@ -1,4 +1,4 @@
-version = 0.1.5
+version = 0.1.7
 source_dir = ../src/
 output_full = three.proton.js
 output_min = three.proton.min.js
@@ -7,7 +7,7 @@ head
 -----
 /*!
  * three.proton v{version}
- * https://github.com/a-jie/three.proton
+ * https://github.com/drawcall/three.proton
  *
  * Copyright {year}, A-JIE
  * Licensed under the MIT license

@@ -70,7 +70,7 @@ proton.addRender(new Proton.SpriteRender(scene));
 
 ## Building three.proton
 Node is a dependency, use terminal to install it with with:<br>
-`git clone git://github.com/a-jie/three.proton.git`<br>
+`git clone git://github.com/drawcall/three.proton.git`<br>
 Then navigate to the build directory by running:<br>
 `cd ./build`<br>
 Finally run the build command:<br>
