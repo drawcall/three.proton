@@ -1,6 +1,6 @@
 {
   "name": "three.proton.js",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "three.proton is a magical 3d particle engine using [three.js]",
   "main": "./build/three.proton.min.js",
   "directories": {
@@ -17,7 +17,8 @@
   "keywords": [
     "particle",
     "three.js",
-    "3d"
+    "threejs",
+    "3d-particle"
   ],
   "author": "drawcall",
   "license": "MIT",
