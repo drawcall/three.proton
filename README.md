@@ -22,7 +22,22 @@ npm install three three.proton.js
   
 - Perfectly compatible with the three.js library. 
 
+## Demo
 
+<p align="center">
+  <a href="https://drawcall.github.io/three.proton/engine/example/eightdiagrams.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/1-min.gif" /></a>
+  <a href="https://drawcall.github.io/three.proton/engine/example/customrender.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/2-min.gif" /></a>
+  <a href="https://drawcall.github.io/three.proton/engine/example/meshrender-collision.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/3-min.gif" /></a>
+  <a href="https://drawcall.github.io/three.proton/engine/example/spriterender-g.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/4-min.gif" /></a>
+  <a href="https://drawcall.github.io/three.proton/engine/example/meshzone.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/5-min.gif" /></a>
+  <a href="https://drawcall.github.io/three.proton/engine/example/spriterender-pointzone.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/6-min.gif" /></a>
+  <a href="https://drawcall.github.io/three.proton/engine/example/helloworld.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/7-min.gif" /></a>
+  <a href="https://drawcall.github.io/three.proton/engine/example/spriterender-snow.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/8-min.gif" /></a>
+  <a href="https://drawcall.github.io/three.proton/engine/example/spriterender-base.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/9-min.gif" /></a>
+</p>
+<p align="middle">
+  <i>These demos are real, you can click them! They contain the full code, too.</i>
+</p>
 
 ## Installation
 
