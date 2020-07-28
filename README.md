@@ -33,7 +33,7 @@ npm install three three.proton.js
   <a href="https://drawcall.github.io/three.proton/engine/example/spriterender-pointzone.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/6-min.gif" /></a>
   <a href="https://drawcall.github.io/three.proton/engine/example/helloworld.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/7-min.gif" /></a>
   <a href="https://drawcall.github.io/three.proton/engine/example/spriterender-snow.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/8-min.gif" /></a>
-  <a href="https://drawcall.github.io/three.proton/engine/example/spriterender-base.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/9-min.gif" /></a>
+  <a href="https://codesandbox.io/s/three-spriterender-39rqy?file=/src/styles.css"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/9-min.gif" /></a>
 </p>
 <p align="middle">
   <i>These demos are real, you can click them! They contain the full code, too.</i>

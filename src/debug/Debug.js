@@ -48,7 +48,7 @@
         },
 
         renderInfo: function() {
-            function getCreatedNumber(type) {
+            function getCreatedNumber(proton, type) {
                 var pool = type == "material" ? "_materialPool" : "_targetPool";
                 var renderer = proton.renderers[0];
                 return renderer[pool].cID;
@@ -71,8 +71,8 @@
 
                     case 3:
                         str += proton.renderers[0].name + "<br>";
-                        str += "target:" + getCreatedNumber("target") + "<br>";
-                        str += "material:" + getCreatedNumber("material");
+                        str += "target:" + getCreatedNumber(proton, "target") + "<br>";
+                        str += "material:" + getCreatedNumber(proton, "material");
                         break;
 
                     default:
