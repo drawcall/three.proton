@@ -1,21 +1,17 @@
 /*!
- * three.proton v0.1.7
+ * three.proton v0.2.0
  * https://github.com/drawcall/three.proton
  *
- * Copyright 2011-2019, A-JIE
+ * Copyright 2011-2020, ajiemath
  * Licensed under the MIT license
  * http://www.opensource.org/licenses/mit-license
  *
  */
-(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define([], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory();
-    } else {
-        root.Proton = factory();
-    }
-}(this, function () {
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('three')) :
+  typeof define === 'function' && define.amd ? define(['three'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Proton = factory(global.THREE));
+}(this, function (THREE) { 
 
 
     //the max particle number in pool

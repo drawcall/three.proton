@@ -1,4 +1,4 @@
-version = 0.1.7
+version = 0.2.0
 source_dir = ../src/
 output_full = three.proton.js
 output_min = three.proton.min.js
@@ -9,7 +9,7 @@ head
  * three.proton v{version}
  * https://github.com/drawcall/three.proton
  *
- * Copyright {year}, A-JIE
+ * Copyright {year}, ajiemath
  * Licensed under the MIT license
  * http://www.opensource.org/licenses/mit-license
  *
@@ -18,15 +18,11 @@ head
 
 umd
 -----
-(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define([], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory();
-    } else {
-        root.Proton = factory();
-    }
-}(this, function () {
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('three')) :
+  typeof define === 'function' && define.amd ? define(['three'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Proton = factory(global.THREE));
+}(this, function (THREE) { 
 -----
 
 files
