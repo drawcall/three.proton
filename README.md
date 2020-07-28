@@ -2,7 +2,11 @@ three.proton
 ======
 
 three.proton is a magical 3d particle engine using [three.js](https://github.com/mrdoob/three.js). It is based on the [Proton](https://github.com/drawcall/Proton) Engine library. It inherited Proton's most api.<br>
-I think it is the simplest three.js particle engine.Check out examples at https://drawcall.github.io/three.proton/<br>
+I think it is the simplest three.js particle engine.Check out examples at [https://drawcall.github.io/three.proton/](https://drawcall.github.io/three.proton/)<br>
+
+```shell
+npm install three three.proton.js
+```
 
 ## Features
 - Four kinds of renderers
@@ -18,22 +22,21 @@ I think it is the simplest three.js particle engine.Check out examples at https:
   
 - Perfectly compatible with the three.js library. 
 
-#### It was very, very easy to use
+
 
 ## Installation
 
-#### Install using npm 
-[![anix](https://nodei.co/npm/three.proton.js.png)](https://npmjs.org/package/three.proton.js)
+#### Import library
 
-``` 
-npm install three.proton.js --save
-... 
+```javascript
+import * as THREE from 'three';
 import Proton from 'three.proton.js';
 ```
 
 #### Include in html
-``` 
-<script type="text/javascript" src="js/three.proton.min.js"></script> 
+```javascript
+<script type="text/javascript" src="./js/three.min.js"></script> 
+<script type="text/javascript" src="./js/three.proton.min.js"></script> 
 ```
 
 ## Usage
