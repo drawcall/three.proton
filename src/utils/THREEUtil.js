@@ -29,6 +29,7 @@
                 distance = -camera.position.z / dir.z;
                 vector.copy(camera.position);
                 vector.add(dir.multiplyScalar(distance));
+
                 return vector;
             }
         }(),

@@ -398,6 +398,7 @@
                 distance = -camera.position.z / dir.z;
                 vector.copy(camera.position);
                 vector.add(dir.multiplyScalar(distance));
+
                 return vector;
             }
         }(),
@@ -2731,7 +2732,9 @@
         this.mouseTarget = Proton.Util.initValue(mouseTarget, window);
         this.ease = Proton.Util.initValue(ease, .7);
         this._allowEmitting = false;
+        this.mouse = new Proton.Vector3D();
         this.initEventHandler();
+
         FollowEmitter._super_.call(this, pObj);
     };
 
@@ -2774,19 +2777,28 @@
         this.canvas = canvas;
     }
 
+    FollowEmitter.prototype.setCameraAndRenderer = function(camera, renderer) {
+        this.camera = camera;
+        this.renderer = renderer;
+        this.canvas = renderer.domElement;
+    }
+
     FollowEmitter.prototype.mousemove = function(e) {
-        if (e.layerX || e.layerX == 0) {
-            this.p.x += (e.layerX - this.p.x) * this.ease;
-            this.p.y += (e.layerY - this.p.y) * this.ease;
-        } else if (e.offsetX || e.offsetX == 0) {
-            this.p.x += (e.offsetX - this.p.x) * this.ease;
-            this.p.y += (e.offsetY - this.p.y) * this.ease;
-        }
+        var rect = this.canvas.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var ratio = this.renderer? this.renderer.getPixelRatio() : 1;
+        x *= ratio;
+        y *= ratio;
 
-        this.p.copy(Proton.THREEUtil.toSpacePos(this.p, this.camera, this.canvas));
+        this.mouse.x += (x - this.mouse.x) * this.ease;
+        this.mouse.y += (y - this.mouse.y) * this.ease;
+        
+        this.p.copy(Proton.THREEUtil.toSpacePos(this.mouse, this.camera, this.canvas, this.renderer));
 
-        if (this._allowEmitting)
+        if (this._allowEmitting){
             FollowEmitter._super_.prototype.emit.call(this, 'once');
+        }
     };
 
     /**
