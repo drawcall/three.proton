@@ -27,11 +27,8 @@ npm install three three.proton.js
 <p align="center">
   <a href="https://drawcall.github.io/three.proton/engine/example/eightdiagrams.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/1-min.gif" /></a>
   <a href="https://drawcall.github.io/three.proton/engine/example/customrender.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/2-min.gif" /></a>
-  
   <a href="https://codesandbox.io/s/three-mesh-modifiers-website-b55p6?file=/src/components/FollowEffect.js"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/4-min.gif" /></a>
-  
   <a href="https://drawcall.github.io/three.proton/engine/example/meshrender-collision.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/3-min.gif" /></a>
-  
   <a href="https://drawcall.github.io/three.proton/engine/example/meshzone.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/5-min.gif" /></a>
   <a href="https://drawcall.github.io/three.proton/engine/example/spriterender-pointzone.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/6-min.gif" /></a>
   <a href="https://drawcall.github.io/three.proton/engine/example/helloworld.html"><img width="274" src="https://drawcall.github.io/three.proton/images/thumb/7-min.gif" /></a>
